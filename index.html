@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>QHLS Weekly Quiz Results</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f5f5;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+}
+
+table{
+    width:80%;
+    margin:auto;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#00897B;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🏆 QHLS Weekly Quiz Results</h1>
+
+<table id="resultTable">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Name</th>
+<th>Wing</th>
+<th>Score</th>
+</tr>
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+<script>
+
+const csvURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
+
+fetch(csvURL)
+.then(res=>res.text())
+.then(data=>{
+
+let rows=data.split("\n");
+
+let html="";
+
+for(let i=1;i<rows.length;i++){
+
+let cols=rows[i].split(",");
+
+if(cols.length<4) continue;
+
+html+=`
+<tr>
+<td>${cols[0]}</td>
+<td>${cols[1]}</td>
+<td>${cols[2]}</td>
+<td>${cols[3]}</td>
+</tr>
+`;
+
+}
+
+document.querySelector("#resultTable tbody").innerHTML=html;
+
+});
+
+</script>
+
+</body>
+</html>
