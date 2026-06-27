@@ -97,6 +97,12 @@ tr:hover{
     }
 
 }
+    .loading-message {
+    font-size: 20px;       /* Increase this for larger text */
+    font-weight: bold;     /* Makes it stand out */
+    padding: 40px !important; /* Adds vertical space to make it look prominent */
+    color: #555;           /* Optional: changes color to a soft grey */
+}
 </style>
 
 </head>
@@ -130,7 +136,7 @@ tr:hover{
 const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
 
 const tableBody = document.querySelector("#resultTable tbody");
-tableBody.innerHTML = '<tr><td colspan="4">Loading results...</td></tr>';
+tableBody.innerHTML = '<tr><td colspan="4" class="loading-message">Loading results...</td></tr>';
 
 fetch(csvURL)
   .then(res => res.text())
