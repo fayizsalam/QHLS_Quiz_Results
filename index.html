@@ -13,28 +13,36 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:#f4f6f9;
+    background:#f5f5f5;
     padding:20px;
 }
 
 h1{
     text-align:center;
+    margin-bottom:20px;
     color:#00897B;
-    margin-bottom:25px;
+    font-size:32px;
 }
 
 .table-container{
     width:100%;
     overflow-x:auto;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
 
 table{
     width:100%;
+    min-width:500px;
     border-collapse:collapse;
     background:#fff;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+th,td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+    white-space:nowrap;
 }
 
 th{
@@ -42,14 +50,8 @@ th{
     color:#fff;
 }
 
-th,td{
-    padding:14px;
-    border:1px solid #ddd;
-    text-align:center;
-}
-
 tr:nth-child(even){
-    background:#fafafa;
+    background:#f9f9f9;
 }
 
 tr:hover{
@@ -58,55 +60,31 @@ tr:hover{
 
 @media(max-width:768px){
 
-thead{
-    display:none;
+    body{
+        padding:15px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    th,td{
+        padding:10px;
+        font-size:14px;
+    }
+
 }
 
-table,
-tbody,
-tr,
-td{
-    display:block;
-    width:100%;
-}
+@media(max-width:480px){
 
-table{
-    box-shadow:none;
-    background:transparent;
-}
+    h1{
+        font-size:20px;
+    }
 
-tr{
-    background:#fff;
-    margin-bottom:18px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,.12);
-    overflow:hidden;
-}
-
-td{
-    text-align:right;
-    padding:15px;
-    position:relative;
-    border:none;
-    border-bottom:1px solid #eee;
-}
-
-td{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 15px;
-    border:none;
-    border-bottom:1px solid #eee;
-    text-align:right;
-}
-
-td::before{
-    content:attr(data-label);
-    font-weight:bold;
-    color:#00897B;
-    margin-right:15px;
-}
+    th,td{
+        padding:8px;
+        font-size:13px;
+    }
 
 }
 </style>
@@ -117,53 +95,61 @@ td::before{
 
 <h1>🏆 QHLS Weekly Quiz Results</h1>
 
-<div class="table-container">
-
+<div class="table-container">    
 <table id="resultTable">
-    <thead>
-        <tr>
-            <td data-label="Sl No">Sl No</td>
-            <td data-label="Name">Name</td>
-            <td data-label="Wing">Wing</td>
-            <td data-label="Score">Score</td>
-        </tr>
-    </thead>
+<thead>
+<tr>
+<th>Sl No</th>
+<th>Name</th>
+<th>Wing</th>
+<th>Score</th>
+</tr>
+</thead>
 
-    <tbody></tbody>
+<tbody>
+
+</tbody>
+
 </table>
 
-</div>   
+</div>    
+
 
 <script>
+const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
 
-const csvURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
+const tableBody = document.querySelector("#resultTable tbody");
+tableBody.innerHTML = '<tr><td colspan="4">Loading results...</td></tr>';
 
 fetch(csvURL)
-.then(res => res.text())
-.then(data => {
-
+  .then(res => res.text())
+  .then(data => {
+    // Split by newline and remove empty lines
     const rows = data.trim().split("\n");
     let html = "";
 
-    for(let i = 1; i < rows.length; i++){
+    // Skip the header row (i=1)
+    for (let i = 1; i < rows.length; i++) {
+      // Regex split to handle potential quotes around CSV fields
+      const cols = rows[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+      
+      if (!cols || cols.length < 4) continue;
 
-        const cols = rows[i].split(",");
-
-        if(cols.length < 4) continue;
-
-        html += `
+      html += `
         <tr>
-            <td data-label="Sl No">${cols[0].trim()}</td>
-            <td data-label="Name">${cols[1].trim()}</td>
-            <td data-label="Wing">${cols[2].trim()}</td>
-            <td data-label="Score">${cols[3].trim()}</td>
-        </tr>`;
+          <td>${cols[0]}</td>
+          <td>${cols[1]}</td>
+          <td>${cols[2]}</td>
+          <td>${cols[3]}</td>
+        </tr>
+      `;
     }
-
-    document.querySelector("#resultTable tbody").innerHTML = html;
-
-});
-
+    tableBody.innerHTML = html;
+  })
+  .catch(err => {
+    tableBody.innerHTML = '<tr><td colspan="4">Failed to load data.</td></tr>';
+    console.error("Error fetching CSV:", err);
+  });
 </script>
 
 </body>
