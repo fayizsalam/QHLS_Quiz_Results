@@ -61,38 +61,38 @@ tr:nth-child(even){
 </table>
 
 <script>
-
-const csvURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
+const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
 
 fetch(csvURL)
-.then(res=>res.text())
-.then(data=>{
+  .then(response => {
+    console.log("Status:", response.status);
+    return response.text();
+  })
+  .then(csv => {
+    console.log(csv);
 
-let rows=data.split("\n");
+    const rows = csv.trim().split(/\r?\n/);
 
-let html="";
+    const tbody = document.querySelector("#resultTable tbody");
+    tbody.innerHTML = "";
 
-for(let i=1;i<rows.length;i++){
+    rows.slice(1).forEach(row => {
+      const cols = row.split(",");
 
-let cols=rows[i].split(",");
+      const tr = document.createElement("tr");
 
-if(cols.length<4) continue;
+      cols.forEach(col => {
+        const td = document.createElement("td");
+        td.textContent = col.replace(/"/g, "");
+        tr.appendChild(td);
+      });
 
-html+=`
-<tr>
-<td>${cols[0]}</td>
-<td>${cols[1]}</td>
-<td>${cols[2]}</td>
-<td>${cols[3]}</td>
-</tr>
-`;
-
-}
-
-document.querySelector("#resultTable tbody").innerHTML=html;
-
-});
-
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(error => {
+    console.error("Fetch Error:", error);
+  });
 </script>
 
 </body>
