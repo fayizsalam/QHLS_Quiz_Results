@@ -91,16 +91,21 @@ td{
     border-bottom:1px solid #eee;
 }
 
-td:last-child{
-    border-bottom:none;
+td{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 15px;
+    border:none;
+    border-bottom:1px solid #eee;
+    text-align:right;
 }
 
 td::before{
     content:attr(data-label);
-    position:absolute;
-    left:15px;
     font-weight:bold;
     color:#00897B;
+    margin-right:15px;
 }
 
 }
@@ -117,10 +122,10 @@ td::before{
 <table id="resultTable">
     <thead>
         <tr>
-            <th>Sl No</th>
-            <th>Name</th>
-            <th>Wing</th>
-            <th>Score</th>
+            <td data-label="Sl No"></td>
+            <td data-label="Name"></td>
+            <td data-label="Wing"></td>
+            <td data-label="Score"></td>
         </tr>
     </thead>
 
@@ -134,31 +139,28 @@ td::before{
 const csvURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
 
 fetch(csvURL)
-.then(res=>res.text())
-.then(data=>{
+.then(res => res.text())
+.then(data => {
 
-let rows=data.split("\n");
+    const rows = data.trim().split("\n");
+    let html = "";
 
-let html="";
+    for(let i = 1; i < rows.length; i++){
 
-for(let i=1;i<rows.length;i++){
+        const cols = rows[i].split(",");
 
-let cols=rows[i].split(",");
+        if(cols.length < 4) continue;
 
-if(cols.length<4) continue;
+        html += `
+        <tr>
+            <td data-label="Sl No">${cols[0].trim()}</td>
+            <td data-label="Name">${cols[1].trim()}</td>
+            <td data-label="Wing">${cols[2].trim()}</td>
+            <td data-label="Score">${cols[3].trim()}</td>
+        </tr>`;
+    }
 
-html += `
-<tr>
-    <td data-label="Sl No">${cols[0]}</td>
-    <td data-label="Name">${cols[1]}</td>
-    <td data-label="Wing">${cols[2]}</td>
-    <td data-label="Score">${cols[3]}</td>
-</tr>
-`;
-
-}
-
-document.querySelector("#resultTable tbody").innerHTML=html;
+    document.querySelector("#resultTable tbody").innerHTML = html;
 
 });
 
