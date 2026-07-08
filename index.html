@@ -1,171 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>QHLS Weekly Quiz Results</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    background:#f5f5f5;
-    padding:20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 10px; /* Reduced margin to keep them closer together */
-    color: #00897B;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 800; /* Extra bold for headings */
-}
-
-/* Specific styling for the QHLS heading */
-h1:first-of-type {
-    font-size: 56px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-}
-
-/* Specific styling for the Results heading */
-h1:nth-of-type(2) {
-    font-size: 35px;
-    margin-bottom: 25px;
-}
-
-.table-container{
-    width:100%;
-    overflow-x:auto;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-table{
-    width:100%;
-    min-width:500px;
-    border-collapse:collapse;
-    background:#fff;
-}
-
-th,td{
-    padding:12px;
-    border:1px solid #ddd;
-    text-align:center;
-    white-space:nowrap;
-}
-
-th{
-    background:#00897B;
-    color:#fff;
-}
-
-tr:nth-child(even){
-    background:#f9f9f9;
-}
-
-tr:hover{
-    background:#f1f1f1;
-}
-
-@media(max-width:768px){
-
-    body{
-        padding:15px;
-    }
-
-    th,td{
-        padding:10px;
-        font-size:14px;
-    }
-
-}
-
-@media(max-width:480px){
-
-
-    th,td{
-        padding:8px;
-        font-size:13px;
-    }
-
-}
-    .loading-message {
-    font-size: 30px;       /* Increase this for larger text */
-    font-weight: bold;     /* Makes it stand out */
-    padding: 40px !important; /* Adds vertical space to make it look prominent */
-    color: #0000FF;           /* Optional: changes color to a soft grey */
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QHLS Weekly Quiz Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
+<body class="bg-slate-50 min-h-screen p-4 md:p-8">
 
-<body>
+    <div class="max-w-4xl mx-auto text-center mb-10">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-teal-700 tracking-wider uppercase mb-2">QHLS</h1>
+        <h1 class="text-2xl md:text-3xl font-semibold text-slate-800">🏆 Weekly Quiz Results</h1>
+        <div class="mt-4 p-3 bg-teal-50 border border-teal-200 rounded-lg inline-block text-teal-800 font-semibold text-lg shadow-sm">
+            ക്ലാസ് - 2️⃣ | 📖 സൂറത്തുല്‍ മുഅ്മിനൂന്‍
+        </div>
+    </div>
 
-<h1>QHLS</h1>
-<h1>🏆 Weekly Quiz Results</h1>
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+        <div class="overflow-x-auto">
+            <table id="resultTable" class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-teal-600 text-white">
+                        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Sl No</th>
+                        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Name</th>
+                        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Wing</th>
+                        <th class="px-6 py-4 font-semibold uppercase tracking-wider">Score</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="divide-y divide-slate-100">
+                    <!-- Data will be injected here -->
+                    <tr>
+                        <td colspan="4" class="px-6 py-12 text-center text-teal-600 font-medium text-lg">
+                            <div class="flex items-center justify-center gap-2">
+                                <div class="w-4 h-4 bg-teal-600 rounded-full animate-bounce"></div>
+                                <span>Loading results...</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<div class="table-container">    
-<table id="resultTable">
-<thead>
-<tr>
-<th>Sl No</th>
-<th>Name</th>
-<th>Wing</th>
-<th>Score</th>
-</tr>
-</thead>
+    <script>
+        const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
+        const tableBody = document.querySelector("#tableBody");
 
-<tbody>
+        fetch(csvURL)
+            .then(res => res.text())
+            .then(data => {
+                const rows = data.trim().split("\n");
+                let html = "";
 
-</tbody>
+                // Process rows starting from index 1 to skip header
+                for (let i = 1; i < rows.length; i++) {
+                    const rowText = rows[i].trim();
+                    if (!rowText) continue;
 
-</table>
+                    // Improved regex to handle CSV fields
+                    const cols = rowText.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
+                    
+                    if (!cols || cols.length < 4) continue;
 
-</div>    
-
-
-<script>
-const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
-
-const tableBody = document.querySelector("#resultTable tbody");
-tableBody.innerHTML = '<tr><td colspan="4" class="loading-message">Loading results...</td></tr>';
-
-fetch(csvURL)
-  .then(res => res.text())
-  .then(data => {
-    // Split by newline and remove empty lines
-    const rows = data.trim().split("\n");
-    let html = "";
-
-    // Skip the header row (i=1)
-    for (let i = 1; i < rows.length; i++) {
-      // Regex split to handle potential quotes around CSV fields
-      const cols = rows[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
-      
-      if (!cols || cols.length < 4) continue;
-
-      html += `
-        <tr>
-          <td>${cols[0]}</td>
-          <td>${cols[1]}</td>
-          <td>${cols[2]}</td>
-          <td>${cols[3]}</td>
-        </tr>
-      `;
-    }
-    tableBody.innerHTML = html;
-  })
-  .catch(err => {
-    tableBody.innerHTML = '<tr><td colspan="4">Failed to load data.</td></tr>';
-    console.error("Error fetching CSV:", err);
-  });
-</script>
-
+                    html += `
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-slate-700 font-medium">${cols[0].replace(/"/g, '')}</td>
+                            <td class="px-6 py-4 text-slate-900">${cols[1].replace(/"/g, '')}</td>
+                            <td class="px-6 py-4 text-slate-600">${cols[2].replace(/"/g, '')}</td>
+                            <td class="px-6 py-4 font-bold text-teal-700">${cols[3].replace(/"/g, '')}</td>
+                        </tr>
+                    `;
+                }
+                tableBody.innerHTML = html;
+            })
+            .catch(err => {
+                tableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-8 text-center text-red-500">Failed to load data. Please check the network connection.</td></tr>';
+                console.error("Error fetching CSV:", err);
+            });
+    </script>
 </body>
 </html>
