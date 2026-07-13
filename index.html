@@ -115,8 +115,8 @@
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 5 + 2; 
                 this.speedY = Math.random() * 0.6 + 0.2;
-                // Increased opacity for vivid animation
-                this.color = `rgba(217, 119, 6, ${Math.random() * 0.4 + 0.2})`;
+                // Reduced opacity for subtle animation
+                this.color = `rgba(217, 119, 6, ${Math.random() * 0.15 + 0.05})`;
             }
             update() {
                 this.y -= this.speedY;
