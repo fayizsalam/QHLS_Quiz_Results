@@ -16,28 +16,11 @@
         
         .font-arabic-style { font-family: 'Amiri', serif; }
         
-        .text-gold-shine {
-            background: linear-gradient(to right, #C69320 0%, #F9F0B3 20%, #C69320 40%, #8E6516 60%, #F9F0B3 80%, #C69320 100%);
-            background-size: 200% auto;
-            color: #000;
-            background-clip: text;
+        .text-royal-copper {
+            background: linear-gradient(135deg, #B45309 0%, #92400E 50%, #78350F 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-            filter: drop-shadow(0px 2px 4px rgba(198, 147, 32, 0.2));
-        }
-
-        .text-royal-bronze {
-            background: linear-gradient(to right, #B45309, #78350F);
-            color: #000;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 2px 4px rgba(146, 64, 14, 0.2));
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
+            filter: drop-shadow(0px 2px 2px rgba(146, 64, 14, 0.2));
         }
 
         #bgCanvas {
@@ -64,7 +47,7 @@
                      class="h-32 w-auto opacity-90 drop-shadow-md">
             </div>
             
-            <h1 class="text-6xl md:text-7xl font-bold text-royal-bronze tracking-tight mb-2 font-arabic-style">QHLS</h1>
+            <h1 class="text-6xl md:text-7xl font-bold text-royal-copper tracking-tight mb-2 font-arabic-style">QHLS</h1>
             <h2 class="text-xl md:text-2xl font-medium text-stone-600 mb-6">Weekly Quiz Results</h2>
             
             <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-3 bg-white/60 backdrop-blur-sm border border-stone-200 shadow-sm rounded-2xl text-center">
@@ -124,23 +107,25 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 5 + 2; 
-                this.speedY = Math.random() * 0.3 + 0.1;
-                this.color = `rgba(217, 119, 6, ${Math.random() * 0.01 + 0.002})`;
+                this.size = Math.random() * 4 + 1; 
+                this.speedY = Math.random() * 0.5 + 0.2;
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.opacity = Math.random() * 0.15 + 0.05;
             }
             update() {
                 this.y -= this.speedY;
+                this.x += this.speedX;
                 if (this.y < -10) this.reset();
             }
             draw() {
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = `rgba(217, 119, 6, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
