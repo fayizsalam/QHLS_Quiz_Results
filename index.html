@@ -16,24 +16,25 @@
         .font-arabic-style { font-family: 'Amiri', serif; }
         .font-malayalam { font-family: 'Noto Sans Malayalam', sans-serif; }
         
-        .text-royal-sky {
-            background: linear-gradient(135deg, #0369a1 0%, #075985 50%, #0c4a6e 100%);
+        .text-royal-copper {
+            background: linear-gradient(135deg, #B45309 0%, #92400E 50%, #78350F 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0px 2px 2px rgba(12, 74, 110, 0.2));
-        }
-
-        .text-sky-shimmer {
-            background: linear-gradient(90deg, #38bdf8 0%, #0284c7 50%, #38bdf8 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
+            filter: drop-shadow(0px 2px 2px rgba(146, 64, 14, 0.2));
         }
 
         @keyframes shine {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
+        }
+
+        .text-gold-shimmer {
+            background: linear-gradient(90deg, #FCD34D 0%, #D97706 50%, #FCD34D 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            filter: drop-shadow(0px 2px 4px rgba(146, 64, 14, 0.3));
         }
 
         #bgCanvas {
@@ -47,53 +48,74 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-sky-50 via-white to-blue-50 min-h-screen text-slate-800 overflow-x-hidden">
+<body class="bg-gradient-to-br from-amber-50 via-stone-50 to-orange-50 min-h-screen text-slate-900 overflow-x-hidden">
 
     <canvas id="bgCanvas"></canvas>
 
     <header class="py-12 px-4 text-center">
         <div class="max-w-2xl mx-auto">
-            <h1 class="text-6xl md:text-7xl font-bold text-royal-sky tracking-tight mb-2 font-arabic-style">QHLS</h1>
-            <h2 class="text-xl md:text-2xl font-bold text-slate-600 mb-6 font-arabic-style">Weekly Online Quiz Results</h2>
+            <div class="flex flex-col items-center mb-4">
+                <img src="https://github.com/fayizsalam/QHLS_Quiz_Results/blob/main/Wisdom%20youth.png?raw=true" 
+                     onerror="this.style.display='none'" 
+                     alt="Wisdom Youth Logo" 
+                     class="h-[140px] w-auto opacity-90 drop-shadow-md">
+            </div>
             
-            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-3 bg-white/80 backdrop-blur-md border border-sky-100 shadow-sm rounded-2xl text-center">
+            <h1 class="text-6xl md:text-7xl font-bold text-royal-copper tracking-tight mb-2 font-arabic-style">QHLS</h1>
+            <h2 class="text-xl md:text-2xl font-bold text-stone-600 mb-6 font-arabic-style">Weekly Online Quiz Results</h2>
+            
+            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-3 bg-white/60 backdrop-blur-sm border border-stone-200 shadow-sm rounded-2xl text-center">
                 <div class="flex items-center gap-2">
                     <span class="text-xl">🎓</span>
-                    <span class="font-semibold text-slate-700 whitespace-nowrap">ക്ലാസ് -</span>
-                    <span class="text-4xl font-black text-sky-700 px-1">4</span>
+                    <span class="font-semibold text-stone-700 whitespace-nowrap">ക്ലാസ് -</span>
+                    <span class="text-4xl font-black text-amber-800 px-1">4</span>
                 </div>
-                <div class="hidden sm:block text-slate-700">|</div>
+                <div class="hidden sm:block text-stone-300">|</div>
                 <div class="flex items-center gap-2">
-                    <span class="text-slate-700 font-bold font-malayalam text-1xl sm:text-2xl whitespace-nowrap">📖 സൂറത്തുല്‍ മുഅ്മിനൂന്‍</span>
+                    <span class="text-amber-800 font-bold font-malayalam text-1xl sm:text-2xl whitespace-nowrap">📖 സൂറത്തുല്‍ മുഅ്മിനൂന്‍</span>
                 </div>
             </div>
         </div>
     </header>
 
     <div id="announcementPage" class="hidden px-4 mb-16">
-        <div class="max-w-xl mx-auto bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-sm border border-sky-100 text-center">
+        <div class="max-w-xl mx-auto bg-white/70 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-sm border border-stone-100 text-center">
             <div class="text-5xl mb-6">📢</div>
-            <p class="text-lg text-slate-700 mb-6 font-malayalam">ഈ ആഴ്ചയിലെ ക്വിസ് ഫലം ചൊവ്വാഴ്ച (28/7/2026) പ്രസിദ്ധീകരിക്കുന്നതാണ്.</p>
+            <div class="text-2xl text-amber-900 font-arabic-style mb-6">السلام عليكم ورحمة الله وبركاته</div>
+            <p class="text-lg text-stone-600 mb-6 font-malayalam">ഈ ആഴ്ചയിലെ ക്വിസ് ഫലം നാളെ പ്രസിദ്ധീകരിക്കുന്നതാണ്. ദയവായി നാളെ വീണ്ടും സന്ദർശിക്കുക.</p>
+            <p class="text-sm text-stone-400 italic mb-6">Please visit again tomorrow.</p>
+            <div class="text-2xl text-amber-800 font-arabic-style">إِنْ شَاءَ ٱللَّٰهُ</div>
         </div>
+        <footer class="mt-12 text-center text-stone-400 text-sm space-y-1">
+            <div>© 2026 QHLS</div>
+        </footer>
     </div>
 
     <main id="resultsPage" class="max-w-2xl mx-auto px-4 pb-16">
         <div class="text-center mb-5 mt-2">
-            <h2 class="font-breath text-sky-shimmer text-6xl md:text-7xl pb-2">Winners</h2>
+            <h2 class="font-breath text-gold-shimmer text-6xl md:text-7xl pb-2">Winners</h2>
         </div>
 
         <div id="resultsGrid" class="grid grid-cols-1 gap-4 max-w-sm mx-auto">
-            <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-sm border border-sky-100 p-12 text-center">
+            <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-sm border border-stone-100 p-12 text-center">
                 <div class="flex flex-col items-center justify-center gap-3">
-                    <div class="w-8 h-8 border-4 border-sky-600 border-t-transparent rounded-full animate-spin"></div>
-                    <span class="font-medium text-slate-600">Loading results...</span>
+                    <div class="w-8 h-8 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
+                    <span class="font-medium text-stone-600">Loading results...</span>
                 </div>
             </div>
         </div>
+
+        <div class="text-center mt-12 mb-8">
+            <h3 class="text-5xl font-bold text-amber-900/80 font-breath tracking-wide">بارك الله فيكم</h3>
+        </div>
+        
+        <footer class="mt-12 text-center text-stone-400 text-sm space-y-1">
+            <div>© 2026 QHLS</div>
+        </footer>
     </main>
 
     <script>
-        const resultsPublished = true; 
+        const resultsPublished = false; 
         const announcementPage = document.getElementById("announcementPage");
         const resultsPage = document.getElementById("resultsPage");
 
@@ -121,23 +143,25 @@
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; 
-                this.speedY = Math.random() * 0.2 + 0.1;
-                this.opacity = Math.random() * 0.2 + 0.05;
+                this.size = Math.random() * 4 + 1; 
+                this.speedY = Math.random() * 0.3 + 0.1;
+                this.speedX = (Math.random() - 0.5) * 0.1;
+                this.opacity = Math.random() * 0.1 + 0.03;
             }
             update() {
                 this.y -= this.speedY;
+                this.x += this.speedX;
                 if (this.y < -10) this.reset();
             }
             draw() {
-                ctx.fillStyle = `rgba(14, 165, 233, ${this.opacity})`;
+                ctx.fillStyle = `rgba(217, 119, 6, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        for (let i = 0; i < 50; i++) particles.push(new Particle());
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -145,6 +169,49 @@
             requestAnimationFrame(animate);
         }
         animate();
+
+        const csvURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSX727T4ALUYfY-rKR4LdqvKWGZ-TuOiO_98FyaGjf_DirjYIi2awK4ymr_vRJ81U0HusrmG3E4kw73/pub?gid=685099871&single=true&output=csv";
+        const resultsGrid = document.querySelector("#resultsGrid");
+
+        fetch(csvURL)
+            .then(res => res.text())
+            .then(data => {
+                const rows = data.trim().split("\n");
+                let results = rows.slice(1).map(row => {
+                    const cols = row.split(',').map(cell => cell.replace(/^"|"$/g, '').trim());
+                    return {
+                        name: cols[1],
+                        wing: cols[2],
+                        score: parseInt(cols[3]) || 0
+                    };
+                }).filter(item => item.name);
+
+                results.sort((a, b) => b.score - a.score);
+
+                let html = "";
+                results.forEach((item, index) => {
+                    html += `
+                        <div class="bg-white/70 backdrop-blur p-5 rounded-2xl shadow-sm border border-stone-100 flex items-center gap-4 hover:shadow-md transition-shadow duration-300">
+                            <!-- Number fixed on the left -->
+                            <div class="flex-shrink-0 w-8 text-stone-500 font-medium text-sm text-left">#${index + 1}</div>
+                            
+                            <!-- Centered text block -->
+                            <div class="flex-grow flex flex-col items-center justify-center text-center">
+                                <h3 class="font-bold text-stone-900 text-lg">${item.name}</h3>
+                                <p class="text-sm text-stone-600 font-medium">${item.wing}</p>
+                            </div>
+                            
+                            <!-- Spacer to balance the number on the left -->
+                            <div class="w-8"></div>
+                        </div>
+                    `;
+                });
+                resultsGrid.innerHTML = html;
+            })
+            .catch(err => {
+                resultsGrid.innerHTML = '<div class="bg-white/50 rounded-3xl p-8 text-center text-red-600 shadow-sm border border-stone-200">Failed to load data. Please check connection.</div>';
+                console.error("Error fetching CSV:", err);
+            });
     </script>
 </body>
 </html>
