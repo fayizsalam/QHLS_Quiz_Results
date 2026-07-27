@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QHLS Weekly Quiz Results</title>
+    <link rel="icon" type="png" href="https://github.com/fayizsalam/QHLS_Quiz_Results/blob/main/QHLS_LOGO_CHUNKAM_UNIT.png?raw=true">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Noto+Naskh+Arabic&family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&family=Noto+Naskh+Arabic&family=Noto+Sans+Malayalam:wght@400;700&display=swap" rel="stylesheet">
     
-   <style>
+    <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #F8FAFC; }
         .font-arabic-style { font-family: 'Noto Naskh Arabic', serif; }
         .font-malayalam { font-family: 'Noto Sans Malayalam', sans-serif; }
         .font-title { font-family: 'Cinzel', serif; }
-        .font-winners { font-family: 'Playfair Display', serif; }
+        .font-winners { font-family: 'Cinzel Decorative', serif; }
         
         .text-royal-blue {
             background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
@@ -57,16 +58,15 @@
                      class="h-[350px] md:h-[250px] lg:h-[300px] w-[750px] opacity-90 drop-shadow-md">
             </div>
             
-            <h1 class="text-3xl md:text-3xl font-bold text-royal-blue tracking-tight mb-5 font-title">Weekly Online Quiz Results</h1>
-            <!-- <h2 class="text-xl md:text-3xl font-bold text-stone-600 mb-6 font-arabic-style">Weekly Online Quiz Results</h2> -->
+            <h1 class="text-[clamp(1.2rem,4.5vw,1.875rem)] font-bold text-royal-blue tracking-tight mb-2 font-title whitespace-nowrap">Weekly Online Quiz Results</h1>
             
-            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-3 bg-white/50 backdrop-blur-md border border-stone-200 shadow-sm rounded-3xl text-center">
+            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-3 bg-white/50 backdrop-blur-md border border-slate-200 shadow-sm rounded-3xl text-center">
                 <div class="flex items-center gap-2">
                     <span class="text-xl">🎓</span>
-                    <span class="font-semibold text-stone-700 whitespace-nowrap">ക്ലാസ് -</span>
+                    <span class="font-semibold text-slate-700 whitespace-nowrap">ക്ലാസ് -</span>
                     <span class="text-4xl font-black text-blue-700 px-1">4</span>
                 </div>
-                <div class="hidden sm:block text-stone-300">|</div>
+                <div class="hidden sm:block text-slate-300">|</div>
                 <div class="flex items-center gap-2">
                     <span class="text-blue-800 font-bold font-malayalam text-1xl sm:text-2xl whitespace-nowrap">📖 സൂറത്തുല്‍ മുഅ്മിനൂന്‍</span>
                 </div>
@@ -75,43 +75,42 @@
     </header>
 
     <div id="announcementPage" class="hidden px-4 mb-16">
-        <div class="max-w-xl mx-auto bg-white/70 backdrop-blur-lg p-8 md:p-12 rounded-[28px] shadow-sm border border-stone-200 text-center">
+        <div class="max-w-xl mx-auto bg-white/70 backdrop-blur-lg p-8 md:p-12 rounded-[28px] shadow-sm border border-slate-200 text-center">
             <div class="text-5xl mb-6">📢</div>
             <div class="text-2xl text-blue-900 font-arabic-style mb-6">السلام عليكم ورحمة الله وبركاته</div>
-            <p class="text-lg text-stone-600 mb-6 font-malayalam">ഈ ആഴ്ചയിലെ ക്വിസ് ഫലം ചൊവ്വാഴ്ച (28/7/2026) പ്രസിദ്ധീകരിക്കുന്നതാണ്.</p>
-            <!-- <p class="text-sm text-stone-400 italic mb-6">Please visit again tomorrow.</p> -->
+            <p class="text-lg text-slate-600 mb-6 font-malayalam">ഈ ആഴ്ചയിലെ ക്വിസ് ഫലം ചൊവ്വാഴ്ച (28/7/2026) പ്രസിദ്ധീകരിക്കുന്നതാണ്.</p>
             <div class="text-2xl text-blue-800 font-arabic-style">إِنْ شَاءَ ٱللَّٰهُ</div>
         </div>
-        <footer class="mt-12 text-center text-stone-400 text-sm">
-            <div>© 2026 QHLS CHUNGAM UNIT</div>
+        <footer class="mt-12 text-center text-slate-400 text-sm">
+            <div>© 2026 QHLS</div>
         </footer>
     </div>
 
     <main id="resultsPage" class="max-w-2xl mx-auto px-4 pb-16">
         <div class="text-center mb-5 mt-2">
-            <h2 class="font-winners text-blue-shimmer text-6xl md:text-7xl pb-2 style="font-family: 'Cinzel Decorative', serif;"">Winners</h2>
+            <h2 class="font-winners text-blue-shimmer text-6xl md:text-7xl pb-2 italic font-bold" style="font-family: 'Cormorant Garamond', serif;">Winners</h2>
         </div>
 
         <div id="resultsGrid" class="grid grid-cols-1 gap-4 max-w-sm mx-auto">
-            <div class="bg-white/50 backdrop-blur-md rounded-[28px] shadow-sm border border-stone-200 p-12 text-center">
+            <div class="bg-white/50 backdrop-blur-md rounded-[28px] shadow-sm border border-slate-200 p-12 text-center">
                 <div class="flex flex-col items-center justify-center gap-3">
                     <div class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    <span class="font-medium text-stone-600">Loading results...</span>
+                    <span class="font-medium text-slate-600">Loading results...</span>
                 </div>
             </div>
         </div>
 
         <div class="text-center mt-12 mb-8">
-            <h3 class="text-5xl font-bold text-emerald-900/80 font-winners tracking-wide italic">بارك الله فيكم</h3>
+            <h3 class="text-5xl font-bold text-blue-900/80 font-winners tracking-wide italic">بارك الله فيكم</h3>
         </div>
         
-        <footer class="mt-12 text-center text-stone-400 text-sm">
+        <footer class="mt-12 text-center text-slate-400 text-sm">
             <div>© 2026 QHLS</div>
         </footer>
     </main>
 
     <script>
-        const resultsPublished = false; 
+        const resultsPublished = true; 
         const announcementPage = document.getElementById("announcementPage");
         const resultsPage = document.getElementById("resultsPage");
 
@@ -150,7 +149,7 @@
                 if (this.y < -10) this.reset();
             }
             draw() {
-                ctx.fillStyle = `rgba(21, 128, 61, ${this.opacity})`;
+                ctx.fillStyle = `rgba(37, 99, 235, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -187,11 +186,11 @@
                 let html = "";
                 results.forEach((item, index) => {
                     html += `
-                        <div class="bg-white/70 backdrop-blur-md p-5 rounded-[28px] shadow-sm border border-stone-200 flex items-center gap-4 hover:shadow-md transition-all duration-300">
-                            <div class="flex-shrink-0 w-8 text-emerald-700 font-semibold text-sm text-left">#${index + 1}</div>
+                        <div class="bg-white/70 backdrop-blur-md p-5 rounded-[28px] shadow-sm border border-slate-200 flex items-center gap-4 hover:shadow-md transition-all duration-300">
+                            <div class="flex-shrink-0 w-8 text-blue-700 font-semibold text-sm text-left">#${index + 1}</div>
                             <div class="flex-grow flex flex-col items-center justify-center text-center">
-                                <h3 class="font-bold text-stone-900 text-lg">${item.name}</h3>
-                                <p class="text-sm text-stone-600 font-medium">${item.wing}</p>
+                                <h3 class="font-bold text-slate-900 text-2xl">${item.name}</h3>
+                                <p class="text-sm text-slate-600 font-medium">${item.wing}</p>
                             </div>
                             <div class="w-8"></div>
                         </div>
@@ -200,7 +199,7 @@
                 resultsGrid.innerHTML = html;
             })
             .catch(err => {
-                resultsGrid.innerHTML = '<div class="bg-white/50 rounded-[28px] p-8 text-center text-red-600 shadow-sm border border-stone-200">Failed to load data. Please check connection.</div>';
+                resultsGrid.innerHTML = '<div class="bg-white/50 rounded-[28px] p-8 text-center text-red-600 shadow-sm border border-slate-200">Failed to load data. Please check connection.</div>';
                 console.error("Error fetching CSV:", err);
             });
     </script>
